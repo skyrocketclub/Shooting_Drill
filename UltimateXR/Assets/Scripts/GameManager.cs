@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
                 timeInSeconds--;
             }
 
-            if(timeInSeconds == 10)
+            if(timeInSeconds == 12)
             {
                 //Start playing the countdown... at 10 seconds
                 AudioManager.countdown = true;
@@ -58,14 +58,14 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            //if(targetsShot == totalTargets)
-            //{
-            //    //You finished the activity, shot all the targets
-            //    timerIsRunning = false;
-            //    AudioManager.countdown = false;
-            //    LightManager.toggleLight = false;
-            //    successful = true; 
-            //}
+            if (targetsShot == totalTargets)
+            {
+                //You finished the activity, shot all the targets
+                timerIsRunning = false;
+                AudioManager.countdown = false;
+                LightManager.toggleLight = false;
+                successful = true;
+            }
         }
     }
 

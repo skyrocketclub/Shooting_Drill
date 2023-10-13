@@ -34,7 +34,6 @@ public class OnTriggerEntered : MonoBehaviour
                 light.SetActive(true);
                 particleSystem.Play();
                 audioSource.Play();
-                GameManager.targetsShot++;
                 StartCoroutine(Destroy());
             }
         }
@@ -43,7 +42,9 @@ public class OnTriggerEntered : MonoBehaviour
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
+        GameManager.targetsShot++;
+        Debug.Log(GameManager.targetsShot + " Targets shot!!!");
         Destroy(target.gameObject);
     }
 }
