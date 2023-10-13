@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     {
         canvasTwo.SetActive(false);
         stopWatch.SetActive(true);
+        GameManager.timerIsRunning = true;
     }
 
 }

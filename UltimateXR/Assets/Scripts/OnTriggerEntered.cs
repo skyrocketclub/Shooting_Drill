@@ -26,20 +26,24 @@ public class OnTriggerEntered : MonoBehaviour
 
     private void DetectAndActOnChild(string childName)
     {
-        Transform child = transform.Find(childName);
-        if (child != null)
+        if (GameManager.timerIsRunning)
         {
-            light.SetActive(true);
-            particleSystem.Play();
-            audioSource.Play();
-            StartCoroutine(Destroy());
+            Transform child = transform.Find(childName);
+            if (child != null)
+            {
+                light.SetActive(true);
+                particleSystem.Play();
+                audioSource.Play();
+                GameManager.targetsShot++;
+                StartCoroutine(Destroy());
+            }
         }
     }
 
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         Destroy(target.gameObject);
     }
 }
