@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
                 if(targetsShot == totalTargets)
                 {
                     successful = true;
+                    UIManager.showSuccessCanvas = true;
+                }
+                else
+                {
+                    UIManager.showFailureCanvas = true;
                 }
             }
 
@@ -65,6 +70,7 @@ public class GameManager : MonoBehaviour
                 AudioManager.countdown = false;
                 LightManager.toggleLight = false;
                 successful = true;
+                UIManager.showSuccessCanvas = true;
             }
         }
     }

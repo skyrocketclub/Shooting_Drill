@@ -5,18 +5,28 @@ using UnityEngine;
 public class LightManager : MonoBehaviour
 {
     public static bool toggleLight;
-    public float onTime = 1.0f;
+    public float onTime = 5.0f;
     public float offTime = 1.0f;
     private bool isLightOn = false;
-    private List<Light> lightComponents = new List<Light>();
+    //private int lightNumber = transform.childCount;
+    private GameObject[] lights;
+    private Light lightComponent;
+
     // Start is called before the first frame update
     void Start()
     {
-        Light[] lights = GetComponents<Light>();
-        foreach(Light light in lights)
+        int lightNumber = transform.childCount;
+        lights = new GameObject[lightNumber];
+
+        for(int i = 0; i < lightNumber; i++)
         {
-            lightComponents.Add(light);
+            lights[i] = transform.GetChild(i).gameObject;
         }
+        Debug.Log("There are " + lights.Length + " light gameobjects...");
+        //foreach (Light light in lights)
+        //{
+        //    lightComponents.Add(light);
+        //}
     }
 
     // Update is called once per frame
@@ -32,16 +42,22 @@ public class LightManager : MonoBehaviour
     {
         while (toggleLight)
         {
-            foreach(Light light in lightComponents)
+            foreach(GameObject light in lights)
             {
                 if (isLightOn)
                 {
-                    light.enabled = false;
+                    light.SetActive(false);
                     //yield return new WaitForSeconds(offTime);
                 }
                 else
                 {
-                    light.enabled = true;
+                    light.SetActive(true);
+                    lightComponent = light.GetComponent<Light>();
+                    if(lightComponent != null )
+                    {
+                        lightComponent.intensity = 5.0f;
+                    }
+
                     //gameObject.SetActive(true);
                     //yield return new WaitForSeconds(onTime);
                 }

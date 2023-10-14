@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip countdownClip;
     public static bool countdown = false;
     public static bool stopCountdown = false;
+    public static bool stopAudio = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,11 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stopAudio)
+        {
+            stopAudio = false;
+            audioSource.Stop();
+        }
         if (countdown)
         {
             countdown = false;
