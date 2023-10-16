@@ -151,7 +151,10 @@ public class GameManager : MonoBehaviour
     {
         //Add the name to the array
         names.Add(nameToAdd);
+       // names.Clear(); //clearing the hall of fame list
         SaveNames(names);
+
+       
         //Add the new text you are given into the hall of fame...
     }
 
