@@ -10,6 +10,10 @@ public class OnTriggerEntered : MonoBehaviour
     public GameObject light;
     public AudioSource audioSource;
 
+  
+    //public string[] names;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +46,11 @@ public class OnTriggerEntered : MonoBehaviour
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         GameManager.targetsShot++;
         Debug.Log(GameManager.targetsShot + " Targets shot!!!");
         Destroy(target.gameObject);
     }
+
+   
 }

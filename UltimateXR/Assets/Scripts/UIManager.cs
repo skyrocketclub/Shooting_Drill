@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class UIManager : MonoBehaviour
     public GameObject stopWatch;
     public GameObject successCanvas;
     public GameObject failureCanvas;
+    public GameObject hallOfFame;
 
     public static bool showSuccessCanvas = false;
     public static bool showFailureCanvas = false;
+
+    public TMP_InputField nameInputField; //where user enters the name...
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,33 @@ public class UIManager : MonoBehaviour
         stopWatch.SetActive(true);
         GameManager.timerIsRunning = true;
         AudioManager.stopAudio = true;
+    }
+
+    public void OnViewHallOfFameButtonClicked()
+    {
+        //if (successCanvas.activeSelf)
+        //{
+        //    successCanvas.SetActive(false);
+        //    hallOfFame.SetActive(true);
+        //    GameManager.viewHallOfFame = true;
+        //}else
+        if (failureCanvas.activeSelf)
+        {
+            failureCanvas.SetActive(false);
+            hallOfFame.SetActive(true);
+            GameManager.viewHallOfFame = true;
+        }
+    }
+
+    public void OnEnterNameIntoHallOfFameClicked()
+    {
+        //Update hall of fame list
+        //equate the inputField text 
+        GameManager.nameToAdd = nameInputField.text;
+        GameManager.addName = true;
+        successCanvas.SetActive(false);
+        hallOfFame.SetActive(true);
+
     }
 
 }
